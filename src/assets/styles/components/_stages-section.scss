@@ -1,0 +1,108 @@
+@use '../abstracts';
+
+.stages-section {
+  &__steps {
+    display: grid;
+    counter-reset: steps-list;
+
+    @include abstracts.mq-from(medium) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include abstracts.mq-from(large) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__steps-item {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    align-items: center;
+    grid-template: "label number" 1fr "label icon" auto / 1fr auto;
+    grid-auto-flow: dense;
+    padding-block: 25px;
+    border-block: 1px solid var(--brand-color-secondary);
+    counter-increment: steps-list;
+    overflow: hidden;
+
+    @include abstracts.mq-from(medium) {
+      grid-template-areas: 
+      "label label"
+      "number icon";
+      padding: 30px;
+      min-height: 392px;
+
+      @include abstracts.smart-borders(2, 1px solid var(--brand-color-secondary), 1px solid transparent);
+    }
+
+    @include abstracts.mq-from(large) {
+      border: unset;
+
+      @include abstracts.smart-borders(4, 1px solid var(--brand-color-secondary), 1px solid transparent);
+    }
+
+    &::before {
+      display: block;
+      grid-area: number;
+      z-index: 10;
+      content: counter(steps-list, decimal-leading-zero);
+      color: transparent;
+      -webkit-text-stroke: 1px color-mix(in srgb, var(--brand-color-accent) 25%, transparent);
+    }
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      display: none;
+      content: "";
+      background-image: linear-gradient(30deg, var(--brand-color-secondary), transparent);
+    }
+  }
+
+  &__steps-item-label {
+    grid-area: label;
+    z-index: 1;
+  }
+
+  &__steps-item-icon {
+    width: 20px;
+    height: 20px;
+    grid-area: icon;
+    color: color-mix(in srgb, var(--brand-color-accent) 25%, transparent);
+    justify-self: center;
+  }
+
+  &__steps-decor {
+    position: absolute;
+    inset: -20px;
+    z-index: -1;
+    display: none;
+    transition-property: transform, opacity;
+    transition-duration: var(--transition-hover);
+    opacity: 0;
+
+    @include abstracts.mq-from(medium) {
+      display: block;
+    }
+  }
+
+  &__steps-item:hover {
+    &::after  {
+      display: block;
+    }
+
+    &::before {
+      -webkit-text-stroke: 1px color-mix(in srgb, var(--brand-color-accent) 100%, transparent);
+    }
+  }
+
+  &__steps-item:hover &__steps-item-icon  {
+    color: color-mix(in srgb, var(--brand-color-accent) 100%, transparent);
+  }
+
+  &__steps-item:hover &__steps-decor {
+    opacity: 1;
+    transform: translateX(-20px);
+  }
+}

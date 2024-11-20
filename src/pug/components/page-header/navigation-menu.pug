@@ -1,0 +1,19 @@
+mixin navigation-menu-list(hierarchy, isSubmenu = false)
+  ul(class = isSubmenu ? 'sub-menu' : 'menu')&attributes(attributes)
+    each item, key in hierarchy
+      - const isString = typeof item.link === 'string';
+      - const sentence = item.label.slice(0, 1).toUpperCase() + item.label.split('-').join(' ').slice(1);
+      if isString
+        - const isSame = key.toLowerCase() === currentPageSlug.toLowerCase();
+        - const hrefAttr = isSame ? false : item.link;
+        - const activeClass = isSame ? 'current-menu-item' : false;
+        - const disabledClass = item.disabled && 'navigation-menu__item--disabled';
+        li.menu-item(class=[activeClass, disabledClass], tabindex='0') 
+          a(href=hrefAttr)= sentence
+      else
+        li.menu-item.menu-item-has-children(tabindex='0')
+          a(href=hrefAttr)= sentence
+          +navigation-menu-list(item.link, true)
+
+mixin navigation-menu(hierarchy)
+  +navigation-menu-list(hierarchy)&attributes(attributes)

@@ -1,0 +1,85 @@
+-
+  const reviewsSectionContent = {
+    title: 'Отзывы клиентов',
+    rewiewList: [
+      {
+        name: 'Виталий Михайлович',
+        role: 'пенсионер',
+        age: '62',
+        avatar: '@image/raw/content/review_1.png',
+        image: {
+          media: [
+            {viewport: 405, size: '88px'},
+            {viewport: 992, size: '180px'},
+          ],
+          srcset: [
+            {path: '@image/prepared/content/review_1-88px.jpg', wDescriptor: 88},
+            {path: '@image/prepared/content/review_1-180px.jpg', wDescriptor: 180},
+          ],
+        },
+        text: 'Спасибо ребятам за оперативную работу. Огромный тополь, который уже разрушал каменный забор и столб электропередач, убрали за 4 часа осторожно и аккуратно. Не оставили мусора, еще и попилили чурки бесплатно. Очень доволен ценой и буду рекомендовать соседям',
+      },
+      {
+        name: 'Татьяна Сергеевна',
+        role: '',
+        age: '40',
+        avatar: '@image/raw/content/review_2.png',
+        image: {
+          media: [
+            {viewport: 405, size: '88px'},
+            {viewport: 992, size: '180px'},
+          ],
+          srcset: [
+            {path: '@image/prepared/content/review_2-88px.jpg', wDescriptor: 88},
+            {path: '@image/prepared/content/review_2-180px.jpg', wDescriptor: 180},
+          ],
+        },
+        text: `После сильной грозы на участке треснула береза и нависла над крышей новой бани. Специалист из ${config.brand.name} приехал в течение 2 часов и устранил проблему. Крышу спасли, а цена работ порадовала. Я рассчитывала, что обойдется дороже. Страшно было наблюдать за работой, но все было профессионально, быстро. На наш участок автокран просто не заехал бы, а к этому дереву вообще только узкая дорожка между посадками. Ни одно живое растение не задели. Спасибо большое.`,
+      },
+      {
+        name: 'Маргарита Евгеньевна',
+        role: '',
+        age: '46',
+        avatar: '@image/raw/content/review_3.png',
+        image: {
+          media: [
+            {viewport: 405, size: '88px'},
+            {viewport: 992, size: '180px'},
+          ],
+          srcset: [
+            {path: '@image/prepared/content/review_3-88px.jpg', wDescriptor: 88},
+            {path: '@image/prepared/content/review_3-180px.jpg', wDescriptor: 180},
+          ],
+        },
+        text: `Нам помогли аккуратно убрать старую большую яблоню. Давно хотели спилить, нависала над домом, боялись, что упадет. ${config.brand.name} аккуратно убрали ветки, а затем постепенно по кускам спилили ствол, крыша и окна не пострадали. Чистая и аккуратная работа. Не хотелось вызывать вышку, так как раньше уборка деревьев вдоль улицы обходилась очень дорого, оставалась куча мусора.`,
+      },
+    ],
+  };
+
+mixin reviewSliderCard(slide)
+  figure.review-card&attributes(attributes)
+    figcaption.review-card__person
+      +respImage(slide.image, alt = '')(class='review-card__avatar')
+      p.review-card__name= slide.name
+      p.review-card__info
+        -
+          const lastDecimal = parseInt(slide.age).toString().slice(-1);
+          const ageSuffix = (lastDecimal === 0 || lastDecimal >= 5) ? 'лет' : (lastDecimal === 1) ? 'год' : 'года';
+        span.review-card__age= slide.age + ` ${ageSuffix}`
+        if slide.role
+          span.review-card__role= ', ' + slide.role
+    blockquote.review-card__text
+      +sprite('quotes')(class='review-card__decor-quotes')
+      p= slide.text
+
+section.section.reviews-section(id='reviews')
+  h2.section__title.reviews-section__title!= reviewsSectionContent.title
+  .swiper.slider.reviews-section__slider
+    .swiper-wrapper
+      each slide in reviewsSectionContent.rewiewList
+        .swiper-slide
+          +reviewSliderCard(slide)(class='slider__card')
+    .reviews-section__slider-controls
+      .swiper-button-prev.slider__button-prev
+      .swiper-button-next.slider__button-next
+  +sprite('forester-logo')(class='reviews-section__background')

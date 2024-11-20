@@ -1,0 +1,86 @@
+@use '../abstracts';
+
+.factors-section {
+  &__title-inner {
+    width: 75%;
+    max-width: 420px;
+  }
+
+  &__difficult-cases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  &__difficult-cases-item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-m);
+  }
+
+  &__difficult-cases-item-icon {
+    width: 30px;
+    height: 30px;
+    color: var(--brand-color-accent);
+  }
+
+  &__decor-image {
+    grid-column: full-width;
+    margin-bottom: 15px;
+    height: 270px;
+    max-height: 500px;
+    background-color: var(--brand-color-secondary);
+  }
+
+  &__notes-list {
+    background-color: var(--brand-color-secondary);
+  }
+
+  &__notes-item {
+    padding: 20px;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--neutral-color-45);
+    }
+  }
+
+  @include abstracts.mq-from(medium) {
+    &__title {
+      $padding: 40px;
+
+      grid-column: full-width;
+      grid-row: 1;
+      z-index: 1;
+      justify-self: right;
+      width: calc(50% + $padding);
+      padding: 0 0 $padding $padding;
+      background-color: var(--brand-color-primary);
+
+      &-inner {
+        width: 420px;
+      }
+    }
+
+    &__difficult-cases-list {
+      grid-row: 2;
+      grid-column: column-2-end / column-3;
+      transform: translateX(-30px);
+    }
+  
+    &__decor-image {
+      grid-row: 1 / span 2;
+      grid-column: full-width;
+      margin-top: 1px;
+      width: 50%;
+      height: 80%;
+    }
+  
+    &__notes-list {
+      grid-row: 2;
+      grid-column: content;
+      align-self: end;
+      width: calc(50% - 1 * var(--gap-l) / 2);
+    }
+  }
+}

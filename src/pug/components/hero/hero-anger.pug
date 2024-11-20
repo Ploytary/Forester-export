@@ -1,0 +1,34 @@
+-
+  const heroAngerContent = {
+    title: 'Спил и подрезка деревьев в Санкт-Петербурге и области в день обращения',
+    treeProps: [
+      'Высохшие',
+      'Опасные',
+      'Больные',
+      'Гнилые',
+      'Аварийные',
+      'Старые',
+    ],
+    workProps: [
+      'В стандартных и нестандартных условиях',
+      'Убираем деревья любой сложности',
+    ],
+    actionButton: 'Позвонить',
+    decorImage: [
+      {path: '@image/prepared/common/general-1147px.jpg', wDescriptor: 1147},
+      {path: '@image/prepared/common/general-991px.jpg', wDescriptor: 991},
+    ],
+  };
+
+section.section.hero-anger.page-grid-full-width
+  .hero-anger__barge-column
+    h2.section__title.hero-anger__title!= heroAngerContent.title
+    ul.hero-anger__labels
+      each prop in heroAngerContent.treeProps
+        li.hero-anger__label-item= prop
+  .hero-anger__work-props
+    ul.hero-anger__work-props-inner
+      each prop in heroAngerContent.workProps
+        li.hero-anger__work-props-item.band-list-item= prop
+  .hero-anger__decor-image&attributes(locals.getLazysizesAtts(heroAngerContent.decorImage))
+  +main-button(heroAngerContent.actionButton)(class='hero-anger__button')

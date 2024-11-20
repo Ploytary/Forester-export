@@ -1,0 +1,12 @@
+.slider {
+  user-select: none;
+
+  .slide-card {
+    height: 100%;
+  }
+
+  &__button-prev, &__button-next {
+    background-color: var(--neutral-color-100);
+    color: var(--neutral-color-0);
+  }
+}

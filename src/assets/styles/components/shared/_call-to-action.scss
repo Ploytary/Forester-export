@@ -1,0 +1,45 @@
+@use '../../abstracts';
+
+.call-to-action {
+  display: grid;
+  grid-template-columns: subgrid;
+  padding-top: 0;
+  background-color: var(--brand-color-secondary);
+  overflow: hidden;
+  isolation: isolate;
+
+  &__title {
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+
+  &__badge {
+    z-index: -1;
+    background-color: var(--brand-color-accent);
+  }
+
+    &__decor-image {
+    grid-column: full-width;
+    place-self: end end;
+    width: 70%;
+    aspect-ratio: 61 / 28;
+    transform: translateX(8%) translateY(20%);
+  }
+
+  @include abstracts.mq-from(medium) {
+    &__action-column {
+      grid-row: 1;
+      grid-column: column-1 / column-2;
+    }
+
+    &__badge {
+      grid-row: 1;
+      grid-column: column-3;
+    }
+
+    &__decor-image {
+      grid-row: 1;
+      grid-column: column-2 / column-3;
+    }
+  }
+}

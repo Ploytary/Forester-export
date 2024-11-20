@@ -1,0 +1,121 @@
+-
+  const methodsSectionContent = {
+    title: 'Мы используем <strong>4 метода</strong> спила',
+    variants: [
+      {
+        term: 'Целиком в сторону естественного наклона',
+        description: 'Требуется большое свободное пространство вокруг и безветренная погода. Метод применяется в основном для невысоких деревьев',
+      },
+      {
+        term: 'Целиком с оттяжкой',
+        description: 'Дерево подпиливается клином и при помощи страховочных элементов валится в нужную сторону. Этот способ так же требует много свободного места',
+      },
+      {
+        term: 'Распил на части',
+        description: 'Сначала удаляются ветки, затем ствол, по частям. Распил производится на небольшие отрезки, которые аккуратно сбрасываются вниз. Снизу работу контролирует подсобник',
+      },
+      {
+        term: 'Распил частями с завешиванием',
+        description: 'Выполняется в самых сложных и труднодоступных местах. Перед распилом ветки и части ствола подвешиваются веревками и спускаются на землю',
+      },
+    ],
+    noteList: [
+      'Подобные работы можно выполнить безопасно только при наличии профессионального снаряжения и оборудования',
+      'Самостоятельный спил может нести угрозу вашей жизни, здоровью, имуществу',
+      'Аварийные упавшие деревья приносят ущерб, устранять который обходится в разы дороже, чем своевременный вызов арбориста',
+    ],
+    cases: {
+      title: 'В каких случаях для спила дерева надо вызывать специалиста?',
+      list: [
+        {
+          text: 'Высота ствола выше 3 метров',
+          image: [
+            {path: '@image/prepared/common/metods_1.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Толщина ствола более 20 см',
+          image: [
+            {path: '@image/prepared/common/metods_2.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Слабая, поврежденная корневая система (корни оголены)',
+          image: [
+            {path: '@image/prepared/common/metods_3.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Дерево аварийное: сухое, гнилое, имеются надломы и трещины ствола или кроны',
+          image: [
+            {path: '@image/prepared/common/metods_4.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Упавшее дерево зависло на крыше, стене строения, соседних деревьях',
+          image: [
+            {path: '@image/prepared/common/metods_5.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Свободная зона вокруг объекта меньше 2-х метров',
+          image: [
+            {path: '@image/prepared/common/metods_6.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Наклон ствола более 20%',
+          image: [
+            {path: '@image/prepared/common/metods_7.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Дерево растет вблизи строений',
+          image: [
+            {path: '@image/prepared/common/metods_8.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Крона опутывает электрические провода',
+          image: [
+            {path: '@image/prepared/common/metods_9.jpg', wDescriptor: 190},
+          ],
+        },
+        {
+          text: 'Невозможно применение спецтехники: автокрана, вышки',
+          image: [
+            {path: '@image/prepared/common/metods_10.jpg', wDescriptor: 190},
+          ],
+        },
+      ],
+    },
+    bgSvgImage: 'saw-outline'
+  };
+
+section.section.methods-section 
+  h2.section__title.methods-section__title!= methodsSectionContent.title
+  ul.methods-section__variants-list
+    each variant in methodsSectionContent.variants
+      li.methods-section__variants-item
+        p.methods-section__variants-item-term
+          span.methods-section__variants-item-term-text= variant.term
+          +icon-button('Открыть/Заркыть')(icon='arrow', class='methods-section__variants-item-trigger')
+        .methods-section__variants-item-description-wrapper
+          p.methods-section__variants-item-description= variant.description
+  ul.methods-section__note-list
+    each note in methodsSectionContent.noteList
+      li.methods-section__note-item= note
+  .methods-section__case
+    h3.methods-section__case-title= methodsSectionContent.cases.title
+    p.methods-section__case-trigger-label
+      span Показать список
+      +icon-button('Разверуть/Свернуть')(class='methods-section__case-trigger', icon='arrow')
+    ul.methods-section__case-list 
+      each caseItem in methodsSectionContent.cases.list
+        li.methods-section__case-item
+          .methods-section__case-item-trigger
+            span.methods-section__case-item-icon
+              +sprite('arrow')
+            span.methods-section__case-item-text= caseItem.text
+          .methods-section__case-item-image&attributes(locals.getLazysizesAtts(caseItem.image))
+  +sprite(methodsSectionContent.bgSvgImage)(class = 'methods-section__background-image')

@@ -1,0 +1,149 @@
+@use '../abstracts';
+
+.services-section {
+  display: grid;
+  grid-template-columns: subgrid;
+
+  &__title {
+    grid-column: content;
+  }
+
+  &__service-main-list {
+    counter-reset: main-list;
+
+    &-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--gap-xm);
+      margin-bottom: 40px;
+      counter-increment: main-list;
+
+      &::before {
+        align-self: center;
+        display: block;
+        content: counter(main-list, decimal-leading-zero);
+        color: var(--neutral-color-45);
+      }
+    }
+  }
+
+  &__column {
+    position: relative;
+    display: grid;
+    align-items: start;
+    gap: var(--gap-m);
+  }
+
+  &__slider-wrapper {
+    display: flow-root;
+    position: relative;
+    height: 100%;
+    min-height: 240px;
+  }
+
+  &__slider {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+
+    .slide-card {
+      height: 100%;
+      isolation: isolate;
+      background-color: var(--brand-color-secondary);
+
+      &__label {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        inset: 0;
+        background-image: linear-gradient(transparent, var(--brand-color-primary));
+        transform: translateY(1px);
+      }
+    }
+  }
+
+  &__service-addition-list {
+    display: flex;
+    flex-direction: column;
+    border-block: 1px solid var(--neutral-color-45);
+
+    &-item {
+      padding-block: 20px;
+      
+      &:not(:last-of-type) {
+        border-bottom: 1px solid var(--neutral-color-45);
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 15px;
+
+    .svg-icon {
+      display: none;
+      width: 38px;
+      height: 38px;
+      padding: 8px;
+      border: 2px solid var(--brand-color-accent);
+      border-radius: 50%;
+    }
+  }
+
+  @include abstracts.mq-from(medium) {
+    &__service-main-list {
+      grid-column: column-1;
+    }
+
+    &__service-main-list-item {
+      grid-template-columns: auto;
+      gap: var(--gap-zero);
+    }
+
+    &__column {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto 1fr;
+      grid-column: column-2 / column-3;
+      gap: var(--gap-l);
+    }
+
+    &__slider-wrapper {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+    }
+
+    &__slider .slide-card__label {
+      max-width: 60%;
+      bottom: 36px;
+    }
+
+    &__service-addition-list {
+      grid-column: 3;
+    }
+
+    &__service-addition-list-item {
+      padding-block: 35px;
+    }
+
+    &__button {
+      display: flex;
+      flex-direction: column-reverse;
+      text-align: left;
+      gap: 20px;
+      margin-top: 0;
+      padding: 50px 40px;
+      grid-column: 3;
+      align-self: end;
+
+      .svg-icon {
+        display: block;
+      }
+    }
+  }
+}

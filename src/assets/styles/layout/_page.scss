@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:list';
+@use'../abstracts';
+
+html {
+  height: 100%;
+}
+
+main {
+  flex-grow: 1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 2000px;
+  margin-inline: auto;
+}
+
+.page-grid {
+  @include abstracts.page-grid;
+
+  @include abstracts.mq-from(medium) {
+    @include abstracts.page-grid(3, var(--gap-l));
+  }
+}
+
+.page-grid > :where(:not(.breakout, .page-grid-full-width)),
+.page-grid-full-width > :where(:not(.breakout, .page-grid-full-width)) {
+  grid-column: content;
+}
+
+.page-grid-breakout {
+  @include abstracts.page-grid-breakout;
+}
+
+.page-grid-full-width {
+  @include abstracts.page-grid-full-width;
+}
+
+.content-grid-cancel {
+  display: unset;
+  grid-template-columns: unset;
+}

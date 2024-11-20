@@ -1,0 +1,51 @@
+-
+  const callToActionRequestContent = {
+    title: 'Оставьте заявку',
+    description: 'Оставьте заявку, мы быстро перезвоним и ответим на все вопросы',
+    phone: {
+      href: '+7921474-67-65',
+      label: '+7 (921) 747-67-65',
+      note: 'Записаться по телефону',
+    },
+    form: {
+      inputs: [
+        {
+          label: 'Имя',
+          name: 'name',
+          type: 'text',
+          icon: 'person',
+          placeholder: 'Ваше Имя',
+        },
+        {
+          label: 'Телефон',
+          name: 'phone',
+          type: 'tel',
+          icon: 'phone',
+          placeholder: 'Ваш Телефон',
+        },
+      ],
+      note: 'Нажимая кнопку "Оставить заявку" Вы даете согласие на обработку ваших персональных данных',
+    },
+    variantLabel: '<em>Или</em> <br> Позвоните нам сами по нашему единому номеру',
+    button: 'Оставить заявку',
+    decorImage: [
+      {path: '@image/prepared/common/saw-284px.png', wDescriptor: 284},
+      {path: '@image/prepared/common/saw-425px.png', wDescriptor: 425},
+      {path: '@image/prepared/common/saw-550px.png', wDescriptor: 550},
+      {path: '@image/prepared/common/saw-610px.png', wDescriptor: 610},
+    ],
+  };
+
+section.section.call-to-action.call-to-action-request.page-grid-full-width
+  .call-to-action__action-column.call-to-action-request__action-column
+    h2.section__title.call-to-action__title.call-to-action-request__title= callToActionRequestContent.title
+    p.call-to-action-request__description= callToActionRequestContent.description
+    form.call-to-action-request__form(method='post')
+      each input in callToActionRequestContent.form.inputs
+        +input-field(input.label)(class='call-to-action-request__form-input', placeholder=input.placeholder, required=true, icon=input.icon, type=input.type, name=input.name)
+      p.call-to-action-request__form-note= callToActionRequestContent.form.note
+      +main-button(callToActionConsultationContent.button)(class='call-to-action-request__button', type='submit')
+  .call-to-action__badge.call-to-action-request__badge
+    p.call-to-action-request__variants!= callToActionRequestContent.variantLabel
+    +phone()(class='call-to-action-request__phone')
+  .call-to-action__decor-image.call-to-action-request__decor-image&attributes(locals.getLazysizesAtts(callToActionRequestContent.decorImage))

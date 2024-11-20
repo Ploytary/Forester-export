@@ -1,0 +1,102 @@
+-
+  const servicesSectionContent = {
+    title: 'Наши услуги',
+    mainList: [
+      '<strong>Спил деревьев</strong> вблизи проводов и строений без применения тяжелой техники',
+      '<strong>Аккуратное удаление</strong> веток и стволов, проросших в кровлю, фундамент, стены и другие насаждения',
+      '<strong>Спил аварийных деревьев</strong> по частям в самых труднодоступных местах, растущих возле и внутри водоёмов',
+      'При необходимости <strong>оказываем дополнительные услуги</strong>, связанные с расчищением участков от деревьев и кустарников',
+    ],
+    additionList: [
+      'Устраняем реальную угрозу имуществу и жизни людей',
+      'Приводим в порядок неэстетичный вид вашего участка',
+      'Убираем риск заражения здоровых деревьев и растений',
+    ],
+    slideList: [
+      {
+        media: [
+          {viewport: 405, imageCount: 1, widthOffset: -60},
+          {viewport: 768, imageCount: 2, widthOffset: -70},
+          {viewport: 992, imageCount: 2.34, widthOffset: -60},
+          {viewport: 1260, imageCount: 2.34, widthOffset: -60},
+        ],
+        srcset: [
+          {path: '@image/prepared/content/services_1-345px.jpg', wDescriptor: 345},
+          {path: '@image/prepared/content/services_1-511px.jpg', wDescriptor: 511},
+        ],
+        label: 'Удаляем сухие и нависающие ветки',
+      },
+      {
+        media: [
+          {viewport: 405, imageCount: 1, widthOffset: -60},
+          {viewport: 768, imageCount: 2, widthOffset: -70},
+          {viewport: 992, imageCount: 2.34, widthOffset: -60},
+          {viewport: 1260, imageCount: 2.34, widthOffset: -60},
+        ],
+        srcset: [
+          {path: '@image/prepared/content/services_2-345px.jpg', wDescriptor: 345},
+          {path: '@image/prepared/content/services_2-511px.jpg', wDescriptor: 511},
+        ],
+        label: 'Проводим подрезку кроны',
+      },
+      {
+        media: [
+          {viewport: 405, imageCount: 1, widthOffset: -60},
+          {viewport: 768, imageCount: 2, widthOffset: -70},
+          {viewport: 992, imageCount: 2.34, widthOffset: -60},
+          {viewport: 1260, imageCount: 2.34, widthOffset: -60},
+        ],
+        srcset: [
+          {path: '@image/prepared/content/services_3-345px.jpg', wDescriptor: 345},
+          {path: '@image/prepared/content/services_3-511px.jpg', wDescriptor: 511},
+        ],
+        label: 'Удаляем сузие и нависающие ветки',
+      },
+      {
+        media: [
+          {viewport: 405, imageCount: 1, widthOffset: -60},
+          {viewport: 768, imageCount: 2, widthOffset: -70},
+          {viewport: 992, imageCount: 2.34, widthOffset: -60},
+          {viewport: 1260, imageCount: 2.34, widthOffset: -60},
+        ],
+        srcset: [
+          {path: '@image/prepared/content/services_4-345px.jpg', wDescriptor: 345},
+          {path: '@image/prepared/content/services_4-511px.jpg', wDescriptor: 511},
+        ],
+        label: 'Проводим подрезку кроны',
+      },
+    ],
+    button: {
+      label: 'Вызвать специалиста',
+      icon: 'arrow',
+    },
+  };
+
+
+
+
+mixin service-slider-card(slide)
+  .slide-card
+    +respImage(slide, alt = '')
+    p.slide-card__label.band-list-item.band-list-item--adaptive-border= slide.label
+
+section.section.services-section(id='services')
+  h2.section__title.services-section__title= servicesSectionContent.title
+  ul.services-section__service-main-list 
+    each item in servicesSectionContent.mainList
+      li.services-section__service-main-list-item
+        span.services-section__service-main-list-item-label!= item
+  .services-section__column
+    ul.services-section__service-addition-list 
+      each item in servicesSectionContent.additionList
+        li.services-section__service-addition-list-item!= item
+    .services-section__slider-wrapper
+      .swiper.slider.services-section__slider
+        ul.swiper-wrapper
+          each slide in servicesSectionContent.slideList
+            li.swiper-slide.slider__slide
+              +service-slider-card(slide)
+        .swiper-button-prev.slider__button-prev
+        .swiper-button-next.slider__button-next
+    +main-button(servicesSectionContent.button.label)(class = 'services-section__button', icon = 'arrow')
+    

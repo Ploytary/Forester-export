@@ -1,0 +1,97 @@
+@use '../../abstracts';
+
+.hero-anger {
+  padding-block: 0;
+
+  @include abstracts.page-grid(2, var(--gap-zero));
+
+  &__title {
+    margin-top: 35px;
+    margin-bottom: 25px;
+  }
+
+  &__barge-column &__title {
+    width: clamp(100%, 75vw, calc(200% + 1 * var(--gap-l)));
+  }
+
+  &__barge-column {
+    display: grid;
+    grid-row: 1 / span 2;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+    grid-column: full-left / column-1;
+    align-content: start;
+    padding-bottom: 30px;
+    margin-bottom: 140px;
+    background-color: var(--brand-color-secondary);
+
+    & > * {
+      grid-column: column-1;
+    }
+  }
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style: "- ";
+  }
+
+  &__label-item {
+    padding-right: 8px;
+  }
+
+  &__work-props {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: 1 / span 2;
+    grid-column: column-2;
+    
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-m);
+      align-self: start;
+      grid-row: 2;
+    }
+  }
+
+  &__decor-image {
+    grid-row: 1 / span 2;
+    grid-column: full-width;
+    z-index: -1;
+    background-color: var(--brand-color-secondary);
+  }
+
+  &__button {
+    align-self: start;
+    margin-top: var(--gap-l);
+  }
+
+  @include abstracts.mq-from(medium) {
+    @include abstracts.page-grid(3, var(--gap-l));
+
+    &__title {
+      margin-top: 70px;
+      margin-bottom: 50px;
+    }
+
+    &__barge-column {
+      padding-bottom: 70px;
+      margin-bottom: 0;
+    }
+
+    &__work-props-inner {
+      gap: var(--gap-l);
+    }
+
+    &__decor-image {
+      grid-row: 1 / span 3;
+      grid-column: column-2 / full-right;
+    }
+
+    &__button {
+      grid-column: column-1;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@use '../../abstracts';
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding-block: 5px;
+  color: var(--neutral-color-45);
+
+  &-item {
+    display: flex;
+    border-bottom: 1px solid var(--neutral-color-45);
+    transition-duration: var(--transition-hover);
+    transition-property: color;
+
+    a {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      color: var(--brand-color-accent);
+    }
+
+    @include abstracts.mq-from(medium) {
+      border-bottom: 1px solid transparent;
+    }
+  }
+
+  @include abstracts.mq-from(medium) {
+    position: static;
+    flex-flow: row wrap;
+
+  }
+}

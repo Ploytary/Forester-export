@@ -1,0 +1,45 @@
+-
+  const menuHierarchy = {
+    'services': {
+      link: '#services',
+      label: 'Услуги',
+    },
+    'stages': {
+      link: '#stages',
+      label: 'Блог',
+    },
+    'advantages': {
+      link: '#advantages',
+      label: 'Преимущества',
+    },
+    'cost': {
+      link: '#cost',
+      label: 'Стоимость',
+    },
+    'reviews': {
+      link: '#reviews',
+      label: 'Отзывы',
+    },
+  };
+
+  const pageHeaderContent = {
+    button: 'Оставить заявку',
+    closeButton: 'Закрыть меню',
+  }
+
+header.page-header.page-grid
+  nav.page-header__navigation-menu.page-grid-full-width
+    .page-header__column
+      +logo()(class='page-header__logo')
+      a.page-header__phone(href=config.brand.phone.href)!= config.brand.phone.label
+        +sprite('phone')
+    .page-header__column.page-header__column--desktop
+      +navigation-menu(menuHierarchy)(class = 'page-header__menu')
+    .page-header__column.page-header__column--mobile
+      +icon-button(pageHeaderContent.closeButton)(class='page-header__burger-menu-button', icon = 'menu')
+      .burger-menu
+        +icon-button(pageHeaderContent.closeButton)(class='burger-menu__close-button', icon = 'x')
+        +navigation-menu(menuHierarchy)(class = 'burger-menu__menu')
+        .burger-menu__actions
+          +phone()(class='page-header__phone burger-menu__phone')
+          +main-button(pageHeaderContent.button)

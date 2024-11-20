@@ -1,0 +1,21 @@
+import { initBurgerMenu } from './initBurgerMenu';
+import { initCostSection } from './initCostSection';
+import { initFaqSection } from './initFaqSection';
+import { initMethodsSection } from './initMethodsSection';
+import { initReviewsSection } from './initReviewsSection';
+import { initServiceSectionSlider } from './initServiceSectionSlider';
+import { initHeroAngerSection } from './initHeroAngerSection';
+import { initPageHeader } from './initPageHeader';
+import { initLazySizes } from './initLazySizes';
+import { initLayoutDebugger } from './initLayoutDebugger';
+
+initLazySizes();
+initPageHeader();
+initBurgerMenu();
+initHeroAngerSection();
+initServiceSectionSlider();
+initMethodsSection();
+initCostSection();
+initReviewsSection();
+initFaqSection();
+initLayoutDebugger();

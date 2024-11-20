@@ -1,0 +1,10 @@
+-
+  const pageFooterContent = {
+    acceptlink: {
+      label: 'Политика конфиденциальности',
+      href: '#',
+    }
+  };
+
+footer.page-footer.page-grid 
+  a.link.page-footer__link(href=pageFooterContent.acceptlink.href)= pageFooterContent.acceptlink.label

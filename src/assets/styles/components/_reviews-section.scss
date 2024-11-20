@@ -1,0 +1,124 @@
+@use '../abstracts';
+
+.reviews-section {
+  position: relative;
+
+  &__background {
+    color: color-mix(in srgb, var(--brand-color-accent) 10%, transparent);
+    position: absolute;
+    inset: 0;
+    height: auto;
+    z-index: -1;
+    margin-top: 70px;
+    aspect-ratio: 891 / 556;
+    max-height: calc(100% - 70px * 2);
+  }
+
+  @include abstracts.mq-from(medium) {
+    &__slider-controls {
+      display: grid;
+      position: absolute;
+      height: min-content;
+      inset: 0;
+      margin-block: auto;
+
+      @include abstracts.content-grid(3, var(--gap-l), true);
+
+      & > * {
+        position: unset;
+        margin-top: unset;
+
+        &:first-child {
+          grid-column: column-1-end;
+
+          transform: translateX(-50px);
+        }
+
+        &:last-child {
+          grid-column: column-3;
+          justify-self: right;
+          margin-right: 50px;
+        }
+      }
+    }
+
+    &__background {
+      inset: 0;
+      left: unset;
+      max-width: 900px;
+    }
+  }
+}
+
+.review-card {
+  &__person {
+    padding-inline: 50px;
+  }
+
+  &__text {
+    padding-inline: 50px;
+  }
+
+  &__info {
+    margin-bottom: 20px;
+  }
+
+  &__age, &__role {
+    color: var(--neutral-color-45);
+  }
+
+  &__avatar {
+    margin-bottom: 20px;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: var(--brand-color-secondary);
+  }
+
+  &__decor-quotes {
+    margin-bottom: 10px;
+    width: 15px;
+    height: 15px;
+    color: var(--brand-color-accent);
+  }
+
+  @include abstracts.mq-from(medium) {
+    @include abstracts.content-grid(3, var(--gap-l), true);
+    gap: var(--gap-zero);
+
+    &__person {
+      display: grid;
+      grid-column: column-1 / column-3;
+      grid-template-rows: auto 1fr;
+      grid-template-columns: subgrid;
+      padding-left: 0;
+    }
+
+    &__avatar {
+      grid-column: column-1-end / column-2;
+      grid-row: 1 / span 2;
+      margin-bottom: 0;
+      margin-left: 15px;
+      width: 180px;
+      height: 180px;
+    }
+
+    &__name {
+      grid-column: column-1;
+      grid-row: 1;
+    }
+
+    &__info {
+      grid-column:  column-1;
+      grid-row: 2;
+      margin-bottom: 0;
+    }
+
+    &__text {
+      grid-column: column-1-end / column-3;
+      grid-row: 2;
+      margin-left: 15px;
+      padding-left: 0;
+    }
+  }
+}
