@@ -4,7 +4,7 @@
 .page-header {
   position: fixed;
   inset-inline: 0;
-  z-index: map-get(abstracts.$z-index , 'menu') ;
+  z-index: map.get(abstracts.$z-index , 'menu') ;
   transition-duration: 1s;
   transition-property: background-color;
 
